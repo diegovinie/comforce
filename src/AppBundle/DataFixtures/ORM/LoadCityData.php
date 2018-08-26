@@ -22,6 +22,7 @@ class LoadCityData extends AbstractFixture implements OrderedFixtureInterface
             $city = new City();
             $city->setName($name);
             $em->persist($city);
+            $this->addReference($name, $city);
         }
 
         $em->flush();

@@ -7,8 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Process
  *
- * @ORM\Table(name="process")
+ * @ORM\Table(name="processes")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProcessRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Process
 {
@@ -186,5 +187,16 @@ class Process
     public function getQuotation()
     {
         return $this->quotation;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setDateValue()
+    {
+        if (!$this->getDate()) {
+
+            $this->date = new \DateTime();
+        }
     }
 }

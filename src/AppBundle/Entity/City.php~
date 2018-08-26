@@ -67,45 +67,4 @@ class City
     {
         return $this->name;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->processes = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add process
-     *
-     * @param \AppBundle\Entity\Process $process
-     *
-     * @return City
-     */
-    public function addProcess(\AppBundle\Entity\Process $process)
-    {
-        $this->processes[] = $process;
-
-        return $this;
-    }
-
-    /**
-     * Remove process
-     *
-     * @param \AppBundle\Entity\Process $process
-     */
-    public function removeProcess(\AppBundle\Entity\Process $process)
-    {
-        $this->processes->removeElement($process);
-    }
-
-    /**
-     * Get processes
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getProcesses()
-    {
-        return $this->processes;
-    }
 }

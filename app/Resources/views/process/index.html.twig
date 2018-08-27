@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Processes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Number</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Quotation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for process in processes %}
+            <tr>
+                <td><a href="{{ path('process_show', { 'id': process.id }) }}">{{ process.id }}</a></td>
+                <td>{{ process.number }}</td>
+                <td>{{ process.description }}</td>
+                <td>{% if process.date %}{{ process.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ process.quotation }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('process_show', { 'id': process.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('process_edit', { 'id': process.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('process_new') }}">Create a new process</a>
+        </li>
+    </ul>
+{% endblock %}

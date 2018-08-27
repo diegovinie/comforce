@@ -108,4 +108,9 @@ class City
     {
         return $this->processes;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

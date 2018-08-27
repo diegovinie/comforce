@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Processes list</h1>
+    <h1>Lista de Procesos</h1>
 
     <table>
         <thead>
             <tr>
-                <th>Number</th>
-                <th>Ciudad</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Quotation</th>
-                <th>Actions</th>
+                <th>Número de Proceso</th>
+                <th>Sede</th>
+                <th>Descripción</th>
+                <th>Fecha de Creación</th>
+                <th>Presupuesto</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -25,10 +25,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('process_show', { 'id': process.id }) }}">show</a>
+                            <a href="{{ path('process_show', { 'id': process.id }) }}">Mostrar</a>
                         </li>
                         <li>
-                            <a href="{{ path('process_edit', { 'id': process.id }) }}">edit</a>
+                            <a href="{{ path('process_edit', { 'id': process.id }) }}">Editar</a>
                         </li>
                     </ul>
                 </td>
@@ -39,7 +39,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('process_new') }}">Create a new process</a>
+            <a href="{{ path('process_new') }}">Crear un nuevo proceso</a>
         </li>
     </ul>
 {% endblock %}

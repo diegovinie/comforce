@@ -6,8 +6,8 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Number</th>
+                <th>Ciudad</th>
                 <th>Description</th>
                 <th>Date</th>
                 <th>Quotation</th>
@@ -17,8 +17,8 @@
         <tbody>
         {% for process in processes %}
             <tr>
-                <td><a href="{{ path('process_show', { 'id': process.id }) }}">{{ process.id }}</a></td>
                 <td>{{ process.number }}</td>
+                <td>{{ process.city }}</td>
                 <td>{{ process.description }}</td>
                 <td>{% if process.date %}{{ process.date|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ process.quotation }}</td>

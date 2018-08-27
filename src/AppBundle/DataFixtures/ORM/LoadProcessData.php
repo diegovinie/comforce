@@ -27,7 +27,7 @@ class LoadProcessData extends AbstractFixture implements OrderedFixtureInterface
 
         $process = new Process();
 
-        $process->setNumber(str_pad(mt_rand(1, 100000), 8, "0", STR_PAD_LEFT));
+        $process->setNumber(mt_rand(1, 100000));
         $process->setDescription($faker->sentence(10, true));
         $process->setDate(
             new \DateTime(

@@ -87,7 +87,8 @@ class Process
      */
     public function setNumber($number)
     {
-        $this->number = $number;
+
+        $this->number = str_pad($number, 8, "0", STR_PAD_LEFT);
 
         return $this;
     }

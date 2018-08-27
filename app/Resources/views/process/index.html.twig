@@ -11,7 +11,15 @@
                 <th>Sede</th>
                 <th>Descripción</th>
                 <th>Fecha de Creación</th>
-                <th>Presupuesto</th>
+                <th>
+                    {% if usd %}
+                    Presupuesto <span>(USD)</span>
+                    <a href="{{ path('process_index') }}">mostrar en COP</a>
+                    {% else %}
+                    Presupuesto <span>(COP)</span>
+                    <a href="{{ path('process_index', { 'money': 'usd' }) }}">mostrar en USD</a>
+                    {% endif %}
+                </th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -22,7 +30,7 @@
                 <td>{{ process.city }}</td>
                 <td>{{ process.description }}</td>
                 <td>{% if process.date %}{{ process.date|date('d/m/Y') }}{% endif %}</td>
-                <td>{{ process.quotation | number_format(2, ',', '.') }}</td>
+                <td>{{ process.quotation | money(usd) | number_format(2, ',', '.') }}</td>
                 <td>
                     <ul>
                         <li>

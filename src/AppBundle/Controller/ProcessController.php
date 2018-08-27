@@ -24,6 +24,14 @@ class ProcessController extends Controller
     {
         $begin = null;
         $end = null;
+        $usd = $request->query->get('money') == 'usd' ? true : false;
+
+        $f = new \Twig_SimpleFilter('money', function ($value, $active=false) {
+            return $active ? $value / 2800 : $value;
+        });
+
+        $this->get('twig')->addFilter($f);
+
         $em = $this->getDoctrine()->getManager();
 
         if ($request->getMethod() == 'POST') {
@@ -37,10 +45,10 @@ class ProcessController extends Controller
             $processes = $em->getRepository('AppBundle:Process')->findAll();
         }
 
-
         return $this->render('process/index.html.twig', array(
             'processes' => $processes,
-            'search' => ['begin' => $begin, 'end' => $end]
+            'search' => ['begin' => $begin, 'end' => $end],
+            'usd' => $usd
         ));
     }
 

@@ -1,0 +1,9 @@
+
+<form class="" action="{{ path('process_index') }}" method="post">
+    <input type="date" name="begin" value="{{ search.begin }}">
+    <input type="date" name="end" value="{{ search.end }}">
+    <button type="submit" name="button">Buscar</button>
+    {% if search.begin %}
+    <a href="{{ path('process_index') }}">Regresar</a>
+    {% endif %}
+</form>

@@ -10,4 +10,16 @@ namespace AppBundle\Repository;
  */
 class ProcessRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function filterByDate($beginDate, $endDate)
+    {
+        $qb = $this->createQueryBuilder('p')
+                ->where("p.date > :beginDate")
+                ->andWhere("p.date < :endDate")
+                ->setParameter('beginDate', $beginDate)
+                ->setParameter('endDate', $endDate);
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
 }

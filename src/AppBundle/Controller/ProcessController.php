@@ -18,16 +18,29 @@ class ProcessController extends Controller
      * Lists all process entities.
      *
      * @Route("/", name="process_index")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        $begin = null;
+        $end = null;
         $em = $this->getDoctrine()->getManager();
 
-        $processes = $em->getRepository('AppBundle:Process')->findAll();
+        if ($request->getMethod() == 'POST') {
+
+            $begin = $request->request->get('begin');
+            $end = $request->request->get('end');
+
+            $processes = $em->getRepository('AppBundle:Process')
+                ->filterByDate($begin, $end);
+        } else {
+            $processes = $em->getRepository('AppBundle:Process')->findAll();
+        }
+
 
         return $this->render('process/index.html.twig', array(
             'processes' => $processes,
+            'search' => ['begin' => $begin, 'end' => $end]
         ));
     }
 

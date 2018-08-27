@@ -1,54 +1,60 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Lista de Procesos</h1>
+    <div class="row">
+        <h1>Lista de Procesos</h1>
 
-    {% include 'partials/search.html.twig' with search %}
-    <table>
-        <thead>
-            <tr>
-                <th>Número de Proceso</th>
-                <th>Sede</th>
-                <th>Descripción</th>
-                <th>Fecha de Creación</th>
-                <th>
-                    {% if usd %}
-                    Presupuesto <span>(USD)</span>
-                    <a href="{{ path('process_index') }}">mostrar en COP</a>
-                    {% else %}
-                    Presupuesto <span>(COP)</span>
-                    <a href="{{ path('process_index', { 'money': 'usd' }) }}">mostrar en USD</a>
-                    {% endif %}
-                </th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for process in processes %}
-            <tr>
-                <td>{{ process.number }}</td>
-                <td>{{ process.city }}</td>
-                <td>{{ process.description }}</td>
-                <td>{% if process.date %}{{ process.date|date('d/m/Y') }}{% endif %}</td>
-                <td>{{ process.quotation | money(usd) | number_format(2, ',', '.') }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('process_show', { 'id': process.id }) }}">Mostrar</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('process_edit', { 'id': process.id }) }}">Editar</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="col-8 offset-2">
+                {% include 'partials/search.html.twig' with search %}
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Número de Proceso</th>
+                            <th>Sede</th>
+                            <th>Descripción</th>
+                            <th>Fecha de Creación</th>
+                            <th>
+                                {% if usd %}
+                                Presupuesto <span>(USD)</span>
+                                <a href="{{ path('process_index') }}">mostrar en COP</a>
+                                {% else %}
+                                Presupuesto <span>(COP)</span>
+                                <a href="{{ path('process_index', { 'money': 'usd' }) }}">mostrar en USD</a>
+                                {% endif %}
+                            </th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for process in processes %}
+                        <tr>
+                            <td>{{ process.number }}</td>
+                            <td>{{ process.city }}</td>
+                            <td>{{ process.description }}</td>
+                            <td>{% if process.date %}{{ process.date|date('d/m/Y') }}{% endif %}</td>
+                            <td align="right">{{ process.quotation | money(usd) | number_format(2, ',', '.') }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-info" href="{{ path('process_show', { 'id': process.id }) }}">Mostrar</a>
+                                    <a class="btn btn-primary" href="{{ path('process_edit', { 'id': process.id }) }}">Editar</a>
 
-    <ul>
-        <li>
-            <a href="{{ path('process_new') }}">Crear un nuevo proceso</a>
-        </li>
-    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <a class="btn btn-primary" href="{{ path('process_new') }}">Crear un nuevo proceso</a>
+            </div>
+        </div>
+
+    </div>
+
+
 {% endblock %}

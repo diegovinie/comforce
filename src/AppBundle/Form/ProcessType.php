@@ -13,7 +13,10 @@ class ProcessType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('number')->add('description')->add('date')->add('quotation')->add('city');
+        $builder->add('number', null, ['label' => 'Número'])
+            ->add('description', null, ['label' => 'Descripción'])
+            ->add('quotation', null, ['label' => 'Presupuesto'])
+            ->add('city', null, ['label' => 'Sede']);
     }/**
      * {@inheritdoc}
      */

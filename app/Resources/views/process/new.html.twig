@@ -1,16 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Creación de Proceso</h1>
+<div class="row">
+</div>
+<div class="col-8">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">Creación de Proceso</h1>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <div class="btn-group">
+                <input class="btn btn-primary" type="submit" value="Crear" />
+                <a class="btn btn-info" href="{{ path('process_index') }}">Regresar</a>
+            </div>
+            {{ form_end(form) }}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('process_index') }}">Regresar a la lista</a>
-        </li>
-    </ul>
+        </div>
+    </div>
+</div>
 {% endblock %}

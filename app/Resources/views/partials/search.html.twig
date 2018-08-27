@@ -1,9 +1,18 @@
 
-<form class="" action="{{ path('process_index') }}" method="post">
-    <input type="date" name="begin" value="{{ search.begin }}">
-    <input type="date" name="end" value="{{ search.end }}">
-    <button type="submit" name="button">Buscar</button>
+<form  class="form-inline" action="{{ path('process_index') }}" method="post">
+    <div class="form-group mb-2">
+        <h4 style="padding-right:4px;">Filtrar por fecha: </h4>
+        <input id="aa" type="date" name="begin" value="{{ search.begin }}">
+    </div>
+    <div class="">
+
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <input  type="date" name="end" value="{{ search.end }}">
+
+    </div>
+    <button class="btn btn-primary mb-2" type="submit" name="button">Buscar</button>
     {% if search.begin %}
-    <a href="{{ path('process_index') }}">Regresar</a>
+    <a class="btn btn-info mb-2" href="{{ path('process_index') }}">Regresar</a>
     {% endif %}
 </form>

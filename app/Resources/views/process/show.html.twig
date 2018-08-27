@@ -1,44 +1,43 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="row">
     <h1>Proceso</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Número de Proceso</th>
-                <td>{{ process.number }}</td>
-            </tr>
-            <tr>
-                <th>Sede</th>
-                <td>{{ process.city }}</td>
-            </tr>
-            <tr>
-                <th>Descripción</th>
-                <td>{{ process.description }}</td>
-            </tr>
-            <tr>
-                <th>Fecha de Creación</th>
-                <td>{% if process.date %}{{ process.date|date('d/m/Y') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Presupuesto</th>
-                <td>{{ process.quotation | number_format(2, ',', '.') }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('process_index') }}">Regresar a la lista</a>
-        </li>
-        <li>
-            <a href="{{ path('process_edit', { 'id': process.id }) }}">Editar</a>
-        </li>
-        <li>
+</div>
+<div class="col-6">
+    <div class="card">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Número de Proceso</th>
+                    <td>{{ process.number }}</td>
+                </tr>
+                <tr>
+                    <th>Sede</th>
+                    <td>{{ process.city }}</td>
+                </tr>
+                <tr>
+                    <th>Descripción</th>
+                    <td>{{ process.description }}</td>
+                </tr>
+                <tr>
+                    <th>Fecha de Creación</th>
+                    <td>{% if process.date %}{{ process.date|date('d/m/Y') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Presupuesto</th>
+                    <td>{{ process.quotation | number_format(2, ',', '.') }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="btn-group">
+            <a class="btn btn-info" href="{{ path('process_index') }}">Regresar</a>
+            <a class="btn btn-primary" href="{{ path('process_edit', { 'id': process.id }) }}">Editar</a>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input class="btn btn-danger" type="submit" value="Borrar" />
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+        </div>
+    </div>
+</div>
 {% endblock %}

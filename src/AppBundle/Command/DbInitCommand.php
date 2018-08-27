@@ -10,6 +10,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use AppBundle\Database\Schema\InitDb;
 
+/**
+ * Comando para crear las tabla en la base de datos
+ */
 class DbInitCommand extends ContainerAwareCommand
 {
     protected function configure()

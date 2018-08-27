@@ -10,6 +10,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 use AppBundle\Database\Schema\InitDb;
 
+/**
+ * Comando para eliminar las tablas de la base de datos
+ */
 class DbDropCommand extends ContainerAwareCommand
 {
     protected function configure()

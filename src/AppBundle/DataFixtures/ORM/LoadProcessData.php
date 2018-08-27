@@ -9,6 +9,12 @@ use AppBundle\Entity\Process;
 
 class LoadProcessData extends AbstractFixture implements OrderedFixtureInterface
 {
+    /**
+     * Devuelve un proceso falso.
+     *
+     * @param ObjectManager $em
+     * @return Process
+     */
     protected function fakeProcess(ObjectManager $em)
     {
         $cities = [
@@ -45,7 +51,7 @@ class LoadProcessData extends AbstractFixture implements OrderedFixtureInterface
 
     public function load(ObjectManager $em)
     {
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i < 8; $i++) {
             // code...
             $process = $this->fakeProcess($em);
             $em->persist($process);

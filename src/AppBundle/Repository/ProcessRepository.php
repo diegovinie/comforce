@@ -10,13 +10,37 @@ namespace AppBundle\Repository;
  */
 class ProcessRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * Filtra por un rango de fechas.
+     *
+     * @param string $beginDate desde
+     * @param string $endDate hasta
+     *
+     * @return array
+     */
     public function filterByDate($beginDate, $endDate)
     {
         $qb = $this->createQueryBuilder('p')
                 ->where("p.date > :beginDate")
                 ->andWhere("p.date < :endDate")
+                ->orderBy('p.date', 'DESC')
                 ->setParameter('beginDate', $beginDate)
                 ->setParameter('endDate', $endDate);
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
+
+    /**
+     * Lista todos los procesos de reciente a antiguo.
+     *
+     * @return array
+     */
+    public function listAllDesc()
+    {
+        $qb = $this->createQueryBuilder('p')
+                ->orderBy('p.date', 'DESC');
 
         $query = $qb->getQuery();
 

@@ -6,11 +6,12 @@ use AppBundle\Entity\Process;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use AppBundle\AppBundle;
 
 /**
  * Process controller.
  *
- * @Route("process")
+ * @Route("/")
  */
 class ProcessController extends Controller
 {
@@ -22,27 +23,32 @@ class ProcessController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $begin = null;
-        $end = null;
+        $begin = null;  // fecha desde
+        $end = null;    // fecha hasta
+        // Si pasa money=usd por GET
         $usd = $request->query->get('money') == 'usd' ? true : false;
 
+        // el filtro para mostrar moneda en dólares
         $f = new \Twig_SimpleFilter('money', function ($value, $active=false) {
-            return $active ? $value / 2800 : $value;
+            
+            return $active ? $value / AppBundle::EXCHANGE : $value;
         });
 
+        // se agrega a twig
         $this->get('twig')->addFilter($f);
 
         $em = $this->getDoctrine()->getManager();
 
         if ($request->getMethod() == 'POST') {
-
+            // si el formulario es enviado filtra por fechas
             $begin = $request->request->get('begin');
             $end = $request->request->get('end');
 
             $processes = $em->getRepository('AppBundle:Process')
                 ->filterByDate($begin, $end);
         } else {
-            $processes = $em->getRepository('AppBundle:Process')->findAll();
+            // de lo contrario muestra todo
+            $processes = $em->getRepository('AppBundle:Process')->listAllDesc();
         }
 
         return $this->render('process/index.html.twig', array(

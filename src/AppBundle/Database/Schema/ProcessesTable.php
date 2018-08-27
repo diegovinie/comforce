@@ -2,6 +2,9 @@
 
 namespace AppBundle\Database\Schema;
 
+/**
+ * Crea la tabla procesos
+ */
 class ProcessesTable
 {
     protected $name = 'processes';

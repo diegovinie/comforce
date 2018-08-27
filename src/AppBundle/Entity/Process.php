@@ -204,7 +204,7 @@ class Process
     public function setDateValue()
     {
         if (!$this->getDate()) {
-
+            // si no tenía fecha antes es porque se está creando
             $this->date = new \DateTime();
         }
     }

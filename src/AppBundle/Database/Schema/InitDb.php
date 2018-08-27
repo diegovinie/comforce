@@ -5,17 +5,32 @@ namespace AppBundle\Database\Schema;
 use Symfony\Component\Yaml\Yaml;
 use PDO;
 
+/**
+ * Ejecuta las sentencias SQL para la creación de las tablas
+ */
 class InitDb
 {
+    /**
+     * @var array configuración de la base de datos
+     */
     protected $config;
 
+    /**
+     * @var PDO conexión con bd
+     */
     protected $con;
 
+    /**
+     * @var array las tablas que serán creadas
+     */
     protected $tables = [
         CitiesTable::class,
         ProcessesTable::class,
     ];
 
+    /**
+     * Conecta con la base de datos
+     */
     public function __construct()
     {
         $options = array(
@@ -43,6 +58,9 @@ class InitDb
 
     }
 
+    /**
+     * Crea las tablas
+     */
     public function up()
     {
         foreach ($this->tables as $className) {
@@ -58,6 +76,9 @@ class InitDb
         }
     }
 
+    /**
+     * Elimina las tablas
+     */
     public function down()
     {
         foreach (array_reverse($this->tables) as $className) {

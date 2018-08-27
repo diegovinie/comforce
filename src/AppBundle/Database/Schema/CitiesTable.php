@@ -2,6 +2,9 @@
 
 namespace AppBundle\Database\Schema;
 
+/**
+ * Crea la tabla ciudades correspondientes con las sedes
+ */
 class CitiesTable
 {
     protected $name = 'cities';

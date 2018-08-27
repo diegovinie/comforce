@@ -109,6 +109,9 @@ class City
         return $this->processes;
     }
 
+    /**
+     * Devuelve el nombre de la entidad
+     */
     public function __toString()
     {
         return $this->getName();

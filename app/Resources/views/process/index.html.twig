@@ -20,8 +20,8 @@
                 <td>{{ process.number }}</td>
                 <td>{{ process.city }}</td>
                 <td>{{ process.description }}</td>
-                <td>{% if process.date %}{{ process.date|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ process.quotation }}</td>
+                <td>{% if process.date %}{{ process.date|date('d/m/Y') }}{% endif %}</td>
+                <td>{{ process.quotation | number_format(2, ',', '.') }}</td>
                 <td>
                     <ul>
                         <li>

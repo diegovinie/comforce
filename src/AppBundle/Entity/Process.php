@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Process
@@ -26,6 +27,7 @@ class Process
      * @var string
      *
      * @ORM\Column(name="number", type="string", length=8)
+     * @Assert\NotBlank()
      */
     private $number;
 
@@ -33,6 +35,13 @@ class Process
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=200)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 200,
+     *      minMessage = "Debe contener al menos una palabra.",
+     *      maxMessage = "No puede ser mayor de 200 caracteres."
+     * )
      */
     private $description;
 
@@ -148,7 +157,7 @@ class Process
      *
      * @return Process
      */
-    public function setCity($city)
+    public function setCity(\AppBundle\Entity\City $city = null)
     {
         $this->city = $city;
 
